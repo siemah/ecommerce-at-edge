@@ -1,0 +1,1 @@
+export const apiEndpoint = "https://data-source.zzenz.com/wp-json/wc/v3";

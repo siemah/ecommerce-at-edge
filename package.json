@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pages:build": "npx @cloudflare/next-on-pages@1",
+    "pages:deploy": "npm run pages:build && wrangler pages deploy .vercel/output/static",
+    "pages:watch": "npx @cloudflare/next-on-pages@1 --watch",
+    "pages:dev": "npx wrangler pages dev .vercel/output/static --compatibility-flag=nodejs_compat"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
@@ -25,6 +29,9 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.4"
+    "@cloudflare/next-on-pages": "^1.3.1",
+    "@tailwindcss/forms": "^0.5.4",
+    "vercel": "^31.0.4",
+    "wrangler": "^3.3.0"
   }
 }
