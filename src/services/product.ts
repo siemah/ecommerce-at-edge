@@ -11,8 +11,6 @@ export async function getProducts<T = Record<string, string>[]>(searchParams?: s
   const endpoint = !!searchParams
     ? `${apiEndpoint}/products?${search}`
     : `${apiEndpoint}/store/2/products`;
-  
-    console.log("<<<<<<endpoint>>>>>>", endpoint)
 
   const products = await httpRequest<T>({
     url: endpoint

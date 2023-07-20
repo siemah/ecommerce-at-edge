@@ -10,6 +10,7 @@ type ProductPageProps = {
   }
 }
 
+export const runtime = "edge";
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
   const similarProducts = await getSimilarProductsByCategories<Record<string, any>[]>(product.categories?.[0]?.id);
