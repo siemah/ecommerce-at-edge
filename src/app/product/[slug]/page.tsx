@@ -1,6 +1,7 @@
 import Card from '@/components/card'
 import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -12,6 +13,32 @@ type ProductPageProps = {
 }
 
 export const runtime = "edge";
+
+export async function generateMetadata({params} : ProductPageProps): Promise<Metadata> {
+  const [product] = await getProduct<Record<string, any>[]>(params);
+
+  return {
+    title: product.name,
+    description: product.short_description,
+    openGraph: {
+      type: "article",
+      title: product.name,
+      description: product.short_description,
+      images: {
+        url: product.images?.[0].src,
+      }
+    },
+    twitter: {
+      card: "summary",
+      title: product.name,
+      description: product.short_description,
+      images: {
+        url: product.images?.[0].src,
+      }
+    }
+  };
+}
+
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
   const similarProducts = await getSimilarProductsByCategories<Record<string, any>[]>(product.categories?.[0]?.id);
