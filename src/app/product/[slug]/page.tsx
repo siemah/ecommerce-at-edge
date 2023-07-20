@@ -14,10 +14,6 @@ export const runtime = "edge";
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
   const similarProducts = await getSimilarProductsByCategories<Record<string, any>[]>(product.categories?.[0]?.id);
-  console.log(
-    JSON.stringify(product, null, 4),
-    JSON.stringify(similarProducts, null, 4),
-  )
 
   return (
     <div className="product-page">
