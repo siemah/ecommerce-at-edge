@@ -1,3 +1,4 @@
+import { getImageLink } from '@/libs/images/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import { UrlObject } from 'url';
@@ -22,13 +23,17 @@ export default function Card({ title, regular_price, sale_price, image, as = "di
     <AsElement href={href as any} className="bg-white shadow rounded overflow-hidden group">
       <div className="relative">
         <Image
-          src={image.src}
+          src={getImageLink(image.src, {
+            we: true,
+            fit: "contain",
+            w: 550,
+          })}
           height={image.height || 1000}
           width={image.width || 1000}
           alt={title}
           className="w-full aspect-square object-contain"
           unoptimized
-          />
+        />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
           <span

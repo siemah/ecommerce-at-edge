@@ -1,4 +1,5 @@
 import Card from '@/components/card'
+import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -34,11 +35,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="container grid grid-cols-2 gap-6">
         <div>
           <Image
-            src={product.images?.[0].src}
+            src={getImageLink(product.images?.[0].src, {
+              w: 750,
+              fit: "contain",
+              we: true
+            })}
             alt="product"
             className="w-full"
-            height={1000}
-            width={1000}
+            height={750}
+            width={750}
             priority
             loading="eager"
             unoptimized
@@ -48,7 +53,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
               product?.images?.map((image: any, index: number) => (
                 <Image
                   key={`product-image-${image.id}`}
-                  src={image.src}
+                  src={getImageLink(image.src, {
+                    h: 100,
+                    w: 100,
+                    fit: "contain",
+                    we: true
+                  })}
                   height={1000}
                   width={1000}
                   alt="product2"

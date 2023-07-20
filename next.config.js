@@ -4,6 +4,7 @@ const nextConfig = {
     domains: [
       'picsum.photos',
       'raw.githubusercontent.com',
+      'images.weserv.nl',
       'images.zzenz.com',
     ],
     // remotePatterns: [

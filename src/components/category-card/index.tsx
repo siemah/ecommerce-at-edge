@@ -1,3 +1,4 @@
+import { getImageLink } from '@/libs/images/utils';
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -11,7 +12,11 @@ export default function CategoryCard({ title, image, href = "#" }: CategoryCardP
   return (
     <div className="relative rounded-sm overflow-hidden group">
       <Image
-        src={image}
+        src={getImageLink(image, {
+          fit: "contain",
+          w: 320,
+          we: true
+        })}
         alt="category 1"
         className="w-full"
         height={1000}
