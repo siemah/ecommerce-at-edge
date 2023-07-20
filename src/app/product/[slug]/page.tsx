@@ -14,6 +14,10 @@ export const runtime = "edge";
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
   const similarProducts = await getSimilarProductsByCategories<Record<string, any>[]>(product.categories?.[0]?.id);
+  console.log(
+    JSON.stringify(product, null, 4),
+    JSON.stringify(similarProducts, null, 4),
+  )
 
   return (
     <div className="product-page">
@@ -45,7 +49,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           />
           <div className="grid grid-cols-5 gap-4 mt-4">
             {
-              product.images.map((image: any, index: number) => (
+              product?.images?.map((image: any, index: number) => (
                 <Image
                   key={`product-image-${image.id}`}
                   src={image.src}
@@ -100,12 +104,12 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
           <div className="pt-4 flex flex-col gap-3">
             {
-              product.attributes.map((attribute: any, index: number) => (
+              product?.attributes?.map((attribute: any, index: number) => (
                 <div key={`product-attribute-${attribute.name}-${index}`}>
                   <h3 className="text-sm text-gray-800 first-letter:capitalize font-semibold mb-1">{attribute.name}</h3>
                   <div className="flex items-center gap-2">
                     {
-                      attribute.options.map((option: string, index: number) => (
+                      attribute?.options?.map((option: string, index: number) => (
                         <div
                           key={`product-attribute-option-${option}-${index}`}
                           className="size-selector"

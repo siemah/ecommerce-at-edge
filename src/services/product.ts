@@ -70,7 +70,7 @@ export default async function getSimilarProductsByCategories<T = Record<string, 
   const products = await getProducts<T>({
     category,
     per_page,
-    consumer_secret: process.env.woo_consumer_key,
+    consumer_secret: process.env.woo_consumer_secret,
     consumer_key: process.env.woo_consumer_key,
   });
 
