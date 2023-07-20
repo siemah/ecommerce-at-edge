@@ -8,7 +8,7 @@ export default async function Home() {
   const { data: categories } = await getCategories<any>();
 
   return (
-    <main>
+    <div>
       <div
         className="bg-cover bg-no-repeat bg-center py-36 relative overflow-hidden"
       >
@@ -536,6 +536,6 @@ export default async function Home() {
         </div>
       </div>
 
-    </main>
+    </div>
   )
 }

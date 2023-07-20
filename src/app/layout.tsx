@@ -138,7 +138,9 @@ export default function RootLayout({
         </nav>
         {/* <!-- ./navbar --> */}
 
-        {children}
+        <main>
+          {children}
+        </main>
 
         {/* <!-- footer --> */}
         <footer className="bg-white pt-16 pb-12 border-t border-gray-100">

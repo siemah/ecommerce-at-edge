@@ -26,8 +26,9 @@ export default function Card({ title, regular_price, sale_price, image, as = "di
           height={image.height || 1000}
           width={image.width || 1000}
           alt={title}
-          className="aspect-square object-contain"
-        />
+          className="w-full aspect-square object-contain"
+          unoptimized
+          />
         <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center 
                     justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
           <span
