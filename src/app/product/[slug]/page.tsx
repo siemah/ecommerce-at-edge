@@ -2,10 +2,8 @@ import Card from '@/components/card'
 import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
 import { Metadata } from 'next'
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
 
 type ProductPageProps = {
   params: {
@@ -17,8 +15,8 @@ export const runtime = "edge";
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const [product] = await getProduct<Record<string, any>[]>(params);
+  const productMainImage = product.images?.[0].src;
 
-  const productMainImage = product.images?.[0].src
   return {
     title: product.name,
     description: product.short_description,
@@ -38,7 +36,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
       title: product.name,
       description: product.short_description,
       images: {
-        url: product.images?.[0].src,
+        url: productMainImage,
       }
     },
   };
