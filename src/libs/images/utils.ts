@@ -31,7 +31,7 @@ export function getImageLink(src: string, imageConfig?: ImageConfig): string {
   const searchParams = new URLSearchParams(options as {});
 
   return (
-    process.env.NODE_ENV !== "production"
+    process.env.NODE_ENV === "production"
       ? `https://images.weserv.nl/?${searchParams}`
       : src
   );
