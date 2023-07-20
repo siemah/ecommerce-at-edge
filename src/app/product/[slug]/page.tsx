@@ -2,6 +2,7 @@ import Card from '@/components/card'
 import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
 import { Metadata } from 'next'
+import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -14,18 +15,22 @@ type ProductPageProps = {
 
 export const runtime = "edge";
 
-export async function generateMetadata({params} : ProductPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const [product] = await getProduct<Record<string, any>[]>(params);
 
+  const productMainImage = product.images?.[0].src
   return {
     title: product.name,
     description: product.short_description,
+    alternates: {
+      canonical: `/product/${product.slug}/`
+    },
     openGraph: {
       type: "article",
       title: product.name,
       description: product.short_description,
       images: {
-        url: product.images?.[0].src,
+        url: productMainImage,
       }
     },
     twitter: {
@@ -35,7 +40,7 @@ export async function generateMetadata({params} : ProductPageProps): Promise<Met
       images: {
         url: product.images?.[0].src,
       }
-    }
+    },
   };
 }
 
@@ -61,6 +66,18 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* <!-- product-detail --> */}
       <div className="container grid grid-cols-2 gap-6">
         <div>
+          <link
+            rel="preload"
+            // @ts-expect-error
+            fetchPriority="high"
+            as="image"
+            href={getImageLink(product.images?.[0].src, {
+              w: 750,
+              fit: "contain",
+              we: true
+            })}
+            type="image/webp"
+          />
           <Image
             src={getImageLink(product.images?.[0].src, {
               w: 750,
