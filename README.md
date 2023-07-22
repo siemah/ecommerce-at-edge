@@ -36,7 +36,7 @@ We can use CircleCI to build nextjs app and deploy it to the cloudflare pages us
 
 curl --request POST \
   --url https://circleci.com/api/v2/project/gh/siemah/ecommerce-at-edge/pipeline \
-  --header 'Circle-Token: CCIPAT_EfYGBR3fS4KuAJrMPZEjkz_2246d017a261b8762ab8f90398280dc66243a1e0' \
+  --header 'Circle-Token: <your circleci api token>' \
   --header 'content-type: application/json' \
   --data '{"branch":"circleci-project-setup","parameters":{"cloudflare_account_id": "<your cloudflare accound id>", "cloudflare_api_token":"<change this with you api token>", "name":"<change it with your project name>"}}'
 
