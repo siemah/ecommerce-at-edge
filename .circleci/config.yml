@@ -2,25 +2,42 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
+orbs:
+  # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
+  # Orbs reduce the amount of configuration required for common tasks.
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
+  node: circleci/node@5.0.2
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      - image: cimg/base:stable
+  build-website-at-edge:
+    # These next lines define a docker executor: https://circleci.com/docs/2.0/executor-types/
+    # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # A list of available CircleCI docker Convenience Images are available here: https://circleci.com/developer/images/image/cimg/node
+    machine:
+      image: ubuntu-2004:current
+    resource_class: medium
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
       - checkout
+      - run: node --version
+      - node/install-packages:
+          pkg-manager: yarn
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: List of current files/folders before building project
+          command: ls -laF
+      - run:
+          name: Build the project
+          command: yarn pages:build
+      - run:
+          name: List of files after building project
+          command: ls -laF
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  sample:
     jobs:
-      - say-hello
+      - build-website-at-edge
