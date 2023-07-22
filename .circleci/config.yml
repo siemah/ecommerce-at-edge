@@ -50,7 +50,7 @@ jobs:
           command: ls -laF
       - run:
           name: Print env vars
-          command: echo "Project name at cf: $NAME and account id: $CLOUDFLARE_ACCOUNT_ID"
+          command: echo "Project name at cf -> $NAME and account id -> $CLOUDFLARE_ACCOUNT_ID"
       - run:
           name: Deploy to cloudflare pages and workers
           command: CLOUDFLARE_ACCOUNT_ID=$CLOUDFLARE_ACCOUNT_ID CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN yarn pages:publish --project-name=$NAME
