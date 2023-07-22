@@ -2,7 +2,16 @@
 # See: https://circleci.com/docs/configuration-reference
 # See circleci rest api: https://circleci.com/docs/api/v2/index.html
 version: 2.1
-
+parameters:
+  cloudflare_account_id:
+    type: string
+    default: ""
+  cloudflare_api_token:
+    type: string
+    default: ""
+  name:
+    type: string
+    default: ""
 orbs:
   # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
   # Orbs reduce the amount of configuration required for common tasks.
