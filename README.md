@@ -27,8 +27,23 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Deploy on Cloudflare
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To benifit from Cloudflare CDN deploy you nextjs app to the cloudflare pages and workers at the edge and use the server side rendering follow the [official documentation]().
+We can use CircleCI to build nextjs app and deploy it to the cloudflare pages using the following command:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```shell
+
+curl --request POST \
+  --url https://circleci.com/api/v2/project/gh/siemah/ecommerce-at-edge/pipeline \
+  --header 'Circle-Token: CCIPAT_EfYGBR3fS4KuAJrMPZEjkz_2246d017a261b8762ab8f90398280dc66243a1e0' \
+  --header 'content-type: application/json' \
+  --data '{"branch":"circleci-project-setup","parameters":{"cloudflare_account_id": "<your cloudflare accound id>", "cloudflare_api_token":"<change this with you api token>", "name":"<change it with your project name>"}}'
+
+```
+
+For more details check:
+
+- [Cloudflare Pages docs](https://developers.cloudflare.com/pages/how-to/use-direct-upload-with-continuous-integration/#get-credentials-from-cloudflare)
+- [CircleCI doc](https://circleci.com/docs/configuration-reference) and its [REST API](https://circleci.com/docs/api/v2/index.html)
+- [Nextjs docs](https://nextjs.org/docs).
