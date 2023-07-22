@@ -49,12 +49,15 @@ jobs:
           name: List of files after building project
           command: ls -laF
       - run:
+          name: Print env vars
+          command: echo "Project name at cf: $NAME and account id: $CLOUDFLARE_ACCOUNT_ID"
+      - run:
           name: Deploy to cloudflare pages and workers
           command: CLOUDFLARE_ACCOUNT_ID=$CLOUDFLARE_ACCOUNT_ID CLOUDFLARE_API_TOKEN=$CLOUDFLARE_API_TOKEN yarn pages:publish --project-name=$NAME
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  sample:
+  build-and-deploy:
     jobs:
       - build-and-publish-to-pages
