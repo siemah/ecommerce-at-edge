@@ -2,7 +2,7 @@ import Card from '@/components/card'
 import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
 import { Metadata } from 'next'
-import { notFound, redirect } from 'next/navigation'
+import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   // handle not found
   if(!product?.name)  {
     // return null
-    notFound();
+    redirect("/404");
   } else {
     productMainImage = product.images?.[0].src;
   }
