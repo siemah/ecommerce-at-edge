@@ -20,7 +20,8 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   
   // handle not found
   if(!product?.name)  {
-    redirect("/404");
+    return null
+    // redirect("/404");
   } else {
     productMainImage = product.images?.[0].src;
   }
