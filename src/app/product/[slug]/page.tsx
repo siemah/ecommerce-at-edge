@@ -2,6 +2,7 @@ import Card from '@/components/card'
 import { getImageLink } from '@/libs/images/utils'
 import getSimilarProductsByCategories, { getProduct } from '@/services/product'
 import { Metadata } from 'next'
+import { notFound, redirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,7 +16,15 @@ export const runtime = "edge";
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const [product] = await getProduct<Record<string, any>[]>(params);
-  const productMainImage = product.images?.[0].src;
+  let productMainImage = [];
+  
+  // handle not found
+  if(!product?.name)  {
+    notFound()
+  } else {
+    productMainImage = product.images?.[0].src;
+  }
+
 
   return {
     title: product.name,
