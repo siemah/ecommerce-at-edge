@@ -244,7 +244,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                     regular_price={currentProduct?.regular_price}
                     sale_price={currentProduct?.sale_price}
                     image={{
-                      src: currentProduct.images[0].src,
+                      src: currentProduct?.images?.[0]?.src,
                       height: 500,
                       width: 500
                     }}
