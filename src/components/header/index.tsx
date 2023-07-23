@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 export default function Header({ logo }: { logo: string }) {
@@ -7,13 +8,13 @@ export default function Header({ logo }: { logo: string }) {
       {/* <!-- header --> */}
       <header className="py-4 shadow-sm bg-white">
         <div className="container flex items-center justify-between">
-          <a href="index.html">
+          <Link href="/">
             <Image
               src={logo}
               alt="Logo"
               className="w-32"
             />
-          </a>
+          </Link>
 
           <div className="w-full max-w-xl relative flex">
             <span className="absolute left-4 top-3 text-lg text-gray-400">
@@ -37,7 +38,7 @@ export default function Header({ logo }: { logo: string }) {
                 className="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
                 8</div>
             </a>
-            <a href="#" className="text-center text-gray-700 hover:text-primary transition relative">
+            <Link href="/checkout/" className="text-center text-gray-700 hover:text-primary transition relative">
               <div className="text-2xl">
                 <i className="fa-solid fa-bag-shopping"></i>
               </div>
@@ -45,13 +46,7 @@ export default function Header({ logo }: { logo: string }) {
               <div
                 className="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">
                 2</div>
-            </a>
-            <a href="#" className="text-center text-gray-700 hover:text-primary transition relative">
-              <div className="text-2xl">
-                <i className="fa-regular fa-user"></i>
-              </div>
-              <div className="text-xs leading-3">Account</div>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -152,10 +147,8 @@ export default function Header({ logo }: { logo: string }) {
 
           <div className="flex items-center justify-between flex-grow md:pl-12 py-5">
             <div className="flex items-center space-x-6 capitalize">
-              <a href="index.html" className="text-gray-200 hover:text-white transition">Home</a>
-              <a href="pages/shop.html" className="text-gray-200 hover:text-white transition">Shop</a>
-              <a href="#" className="text-gray-200 hover:text-white transition">About us</a>
-              <a href="#" className="text-gray-200 hover:text-white transition">Contact us</a>
+              <Link href="/" className="text-gray-200 hover:text-white transition">Home</Link>
+              <Link href="/shop/1" className="text-gray-200 hover:text-white transition">Shop</Link>
             </div>
             <a href="pages/login.html" className="text-gray-200 hover:text-white transition">Login</a>
           </div>

@@ -16,16 +16,7 @@ export const runtime = "edge";
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const [product] = await getProduct<Record<string, any>[]>(params);
-  let productMainImage = [];
-  
-  // handle not found
-  if(!product?.name)  {
-    // return null
-    redirect("/404");
-  } else {
-    productMainImage = product.images?.[0].src;
-  }
-
+  let productMainImage = product.images?.[0].src;
 
   return {
     title: product.name,
@@ -54,6 +45,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
+  console.log("<<<<<<[[[product]]]>>>>>>", product)
+
+  // handle not found
+  if (!product?.name) {
+    // return null
+    redirect("/404");
+  }
+
   const similarProducts = await getSimilarProductsByCategories<Record<string, any>[]>(product.categories?.[0]?.id);
 
   return (
