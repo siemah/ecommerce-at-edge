@@ -3,6 +3,7 @@ import CategoryCard from '@/components/category-card';
 import { getCategories, getProducts } from '@/services/product'
 import Image from 'next/image'
 
+export const runtime = "edge";
 export default async function Home() {
   const products = await getProducts<any>();
   const { data: categories } = await getCategories<any>();
