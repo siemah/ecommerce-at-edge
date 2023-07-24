@@ -45,7 +45,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const [product] = await getProduct<Record<string, any>[]>(params);
-  console.log("<<<<<<[[[product]]]>>>>>>", product)
 
   // handle not found
   if (!product?.name) {
