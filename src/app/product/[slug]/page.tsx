@@ -72,18 +72,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
       {/* <!-- product-detail --> */}
       <div className="container grid grid-cols-2 gap-6">
         <div>
-          <link
-            rel="preload"
-            // @ts-expect-error
-            fetchPriority="high"
-            as="image"
-            href={getImageLink(product.images?.[0].src, {
-              w: 750,
-              fit: "contain",
-              we: true
-            })}
-            type="image/webp"
-          />
           <Image
             src={getImageLink(product.images?.[0].src, {
               w: 750,
@@ -94,8 +82,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             className="w-full"
             height={750}
             width={750}
+            fetchPriority="high"
             priority
-            loading="eager"
             unoptimized
           />
           <div className="grid grid-cols-5 gap-4 mt-4">

@@ -1,16 +1,12 @@
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./globals.css"
 import "@/assets/css/main.css";
-import { Roboto, Poppins } from "next/font/google";
+import { Roboto} from "next/font/google";
 import Logo from "@/assets/images/logo.svg";
 import { Metadata } from "next";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"]
-});
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["400", "500", "700"]
@@ -37,8 +33,12 @@ export default function RootLayout({
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        
+        <link rel="preconnect" href="https://images.weserv.nl" />
+        <link rel="preconnect" href="https://images.zzenz.com" />
+
       </head>
-      <body className={`${poppins.className} ${roboto.className}`}>
+      <body className={`${roboto.className}`}>
 
         {/* header */}
         <Header logo={Logo} />
