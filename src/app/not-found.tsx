@@ -9,7 +9,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"]
 });
-
+export const runtime = "edge";
 export const metadata: Metadata = {
   title: 'Not Found - 404',
   description: 'this page doesnt exists',
